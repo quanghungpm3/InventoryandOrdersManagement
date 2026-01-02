@@ -39,7 +39,19 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    nameOrder: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 150,
+    },
 
+    description: {
+      type: String,
+      trim: true,
+      maxlength: 2000,
+    },
+              
     items: {
       type: [orderItemSchema],
       required: true,
