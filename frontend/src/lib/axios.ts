@@ -3,7 +3,7 @@ import { useAuthStore } from "@/stores/useAuthStore";
 
 const api = axios.create({
   baseURL: import.meta.env.MODE === "development" 
-    ? "https://inventory-and-orders-management.onrender.com/api" 
+    ? "http://localhost:5001/api" 
     : "/api",
   withCredentials: true, // ✅ gửi cookie tự động
 });
