@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useOrderStore } from "@/stores/useOrderStore";
 import OrderForm from "@/components/order/order-form";
-import OrderList from "@/components/order/OrdertList";
+import OrderList from "@/components/order/OrderList";
 import type { Order } from "@/types/order";
-import "@/components/ui/order.css";
+import "@/components/ui/product.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const OrderPage = () => {
   const {
@@ -15,19 +17,16 @@ const OrderPage = () => {
     clearOrder,
   } = useOrderStore();
 
-  const [showForm, setShowForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchOrders();
     return () => clearOrder();
   }, []);
 
-  /* =========================
-     HANDLERS
-  ========================= */
+
   const handleCreate = () => {
-    setShowForm(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setShowModal(true);
   };
 
   const handleStatusChange = async (
@@ -47,40 +46,8 @@ const OrderPage = () => {
   };
 
   return (
-    <div className="container py-4">
-      {/* =========================
-          MODAL CREATE ORDER
-      ========================= */}
-      {showForm && (
-        <div
-          className="modal-overlay"
-          onClick={() => setShowForm(false)}
-        >
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="d-flex justify-content-between mb-3">
-              <h5 className="m-0 text-primary">Tạo đơn hàng</h5>
-              <button
-                className="btn-close"
-                onClick={() => setShowForm(false)}
-              />
-            </div>
+    <div className="container">
 
-            <OrderForm
-              onSuccess={() => {
-                setShowForm(false);
-                fetchOrders();
-              }}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* =========================
-          ORDER LIST
-      ========================= */}
       {loading && orders.length === 0 ? (
         <p className="text-center">Đang tải đơn hàng...</p>
       ) : (
@@ -88,8 +55,44 @@ const OrderPage = () => {
           orders={orders}
           onStatusChange={handleStatusChange}
           onDelete={handleDelete}
-          onAdd={handleCreate} // Gửi handler xuống OrderList
+          onAdd={handleCreate}
         />
+      )}
+
+      {showModal && (
+        <>
+          <div className="modal-backdrop fade show"></div>
+
+          <div
+            className="modal fade show d-block"
+            tabIndex={-1}
+            role="dialog"
+          >
+            <div className="modal-dialog modal-lg modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header ">
+                  <h5 className="modal-title text-primary">
+                    <span className="bi bi-plus-circle fw-bold"> Tạo đơn hàng</span>
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    onClick={() => setShowModal(false)}
+                  />
+                </div>
+
+                <div className="modal-body">
+                  <OrderForm
+                    onSuccess={() => {
+                      setShowModal(false);
+                      fetchOrders();
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );

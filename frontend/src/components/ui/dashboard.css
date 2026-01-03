@@ -1,0 +1,275 @@
+.dashboard-wrapper {
+    background-color: #f4f7f9; 
+    padding: 24px;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #e0e6ed;
+    padding: 20px;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    width: 100%;
+    height: 380px;
+    min-height: 0;
+    position: relative;
+    flex-grow: 1;
+}
+
+
+.card-header-admin {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.card-header-admin h6 {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #334155;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-header-indicator {
+    width: 4px;
+    height: 16px;
+    background: #0d6efd;
+    margin-right: 12px;
+    border-radius: 2px;
+}
+
+
+.stat-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.stat-box:hover {
+    border-color: #3b82f6;
+    background-color: #f8fafc;
+}
+
+.icon-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+
+.bg-soft-primary { background: #e0f2fe; color: #0284c7; }
+.bg-soft-success { background: #dcfce7; color: #16a34a; }
+.bg-soft-warning { background: #fef9c3; color: #ca8a04; }
+.bg-soft-danger { background: #fee2e2; color: #dc2626; }
+
+.stat-info .label {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.stat-info .value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1;
+}
+
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: 0.85rem;
+}
+
+.status-row:last-child { border-bottom: none; }
+
+.status-label {
+    display: flex;
+    align-items: center;
+    color: #475569;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+
+.chart-tooltip {
+    position: absolute;
+    background: #1e293b;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.recharts-default-legend {
+    font-size: 12px !important; 
+    padding: 0 !important;
+    margin-top: -15px !important; 
+    display: flex !important;
+    flex-wrap: nowrap !important; 
+    justify-content: flex-end !important; 
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.recharts-legend-item {
+    margin-right: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.recharts-legend-item svg {
+    width: 8px !important;
+    height: 8px !important;
+    margin-right: 4px !important;
+}
+
+
+
+@media (max-width: 576px) {
+
+    .dashboard-wrapper {
+        padding: 12px !important;
+    }
+
+
+    .stat-box {
+        padding: 12px 10px !important;
+        margin-bottom: 2px;
+    }
+
+    .icon-container {
+        width: 38px !important;
+        height: 38px !important;
+        margin-right: 10px !important;
+        border-radius: 6px !important;
+    }
+
+    .icon-container i {
+        font-size: 1.1rem !important; 
+    }
+
+
+    .stat-info .label {
+        font-size: 0.65rem !important;
+        letter-spacing: 0;
+    }
+
+    .stat-info .value {
+        font-size: 1rem !important; 
+    }
+
+    .dashboard-card {
+        padding: 12px !important;
+        border-radius: 4px !important;
+    }
+
+    .card-header-admin {
+        margin-bottom: 12px !important;
+        padding-bottom: 8px !important;
+        flex-direction: row; 
+        justify-content: space-between;
+    }
+
+    .card-header-admin h6 {
+        font-size: 0.75rem !important;
+        letter-spacing: 0;
+    }
+
+    .card-header-indicator {
+        height: 14px !important;
+        width: 3px !important;
+        margin-right: 8px !important;
+    }
+
+    .form-select-sm {
+        font-size: 0.7rem !important;
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+        max-width: 120px;
+    }
+
+    .status-row {
+        padding: 8px 4px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .dot {
+        width: 6px !important;
+        height: 6px !important;
+        margin-right: 6px !important;
+    }
+
+    .chart-container {
+        height: 280px !important; 
+    }
+
+   .recharts-default-legend {
+    font-size: 10px !important;
+    padding: 0 !important;
+    margin-top: -15px !important; 
+    display: flex !important;
+    flex-wrap: nowrap !important; 
+    justify-content: flex-end !important;
+    overflow-x: auto; 
+    white-space: nowrap;
+}
+
+.recharts-legend-item {
+    margin-right: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.recharts-legend-item svg {
+    width: 8px !important;
+    height: 8px !important;
+    margin-right: 4px !important;
+}
+
+@media (max-width: 576px) {
+    .recharts-default-legend {
+        font-size: 8px !important;
+        margin-left: 25px !important;
+    }
+    .recharts-legend-item {
+        margin-right: 5px !important;
+    }
+}
+}
+
+@media (max-width: 350px) {
+    .stat-info .value {
+        font-size: 0.9rem !important;
+    }
+}

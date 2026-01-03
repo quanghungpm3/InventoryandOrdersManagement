@@ -7,7 +7,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   accessToken: null,
   user: null,
   loading: false,
-  isRefreshing: false, 
+  isRefreshing: false,
 
   setAccessToken: (accessToken) => {
     set({ accessToken });
@@ -77,10 +77,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   refresh: async () => {
-    const {isRefreshing} = get();
+    const { isRefreshing } = get();
     if (isRefreshing) return; // ⛔ CHẶN GỌI LẦN 2
 
-    set({isRefreshing: true});
+    set({ isRefreshing: true });
 
     try {
       set({ loading: true });
@@ -97,7 +97,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       toast.error("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!");
       get().clearState();
     } finally {
-      set({ loading: false, isRefreshing: false  });
+      set({ loading: false, isRefreshing: false });
     }
   },
 }));

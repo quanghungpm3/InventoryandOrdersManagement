@@ -4,10 +4,15 @@ import { ProductForm } from "@/components/product/product-form";
 import { ProductList } from "@/components/product/ProductList";
 import type { Product } from "@/types/product";
 import "@/components/ui/product.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const ProductPage = () => {
-  const { products, loading, fetchProducts, deleteProduct } = useProductStore();
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const { products, loading, fetchProducts, deleteProduct } =
+    useProductStore();
+
+  const [editingProduct, setEditingProduct] =
+    useState<Product | null>(null);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -22,7 +27,8 @@ const ProductPage = () => {
 
   const handleDelete = async (ids: string[] | string) => {
     const idsArray = Array.isArray(ids) ? ids : [ids];
-    if (idsArray.length === 0) return;
+    if (!idsArray.length) return;
+
     if (confirm(`Xóa ${idsArray.length} sản phẩm đã chọn?`)) {
       await Promise.all(idsArray.map((id) => deleteProduct(id)));
       fetchProducts();
@@ -30,21 +36,40 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="container py-4">
-      {/* Modal overlay */}
+    <div className="container">
       {showForm && (
-        <div className="modal-overlay" onClick={() => setShowForm(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="d-flex justify-content-between mb-3">
-              <h5 className="m-0 text-primary">
-                {editingProduct ? "Sửa sản phẩm" : "Thêm mới sản phẩm"}
+        <div
+          className="modal-overlay"
+          onClick={() => setShowForm(false)}
+        >
+          <div
+            className="modal-content p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+              <h5 className="fw-bold text-primary m-0">
+                <i
+                  className={`bi ${editingProduct
+                    ? "bi-pencil-square"
+                    : "bi-plus-circle"
+                    } me-2`}
+                />
+                {editingProduct
+                  ? "Cập nhật sản phẩm"
+                  : "Thêm sản phẩm mới"}
               </h5>
-              <button className="btn-close" onClick={() => setShowForm(false)}></button>
+
+              <button
+                className="btn-close"
+                onClick={() => setShowForm(false)}
+              />
             </div>
+
             <ProductForm
               product={editingProduct ?? undefined}
               onSuccess={() => {
                 setShowForm(false);
+                setEditingProduct(null);
                 fetchProducts();
               }}
             />
@@ -53,7 +78,13 @@ const ProductPage = () => {
       )}
 
       {loading && products.length === 0 ? (
-        <p className="text-center">Đang tải...</p>
+        <div className="text-center py-5">
+          <div
+            className="spinner-border text-primary"
+            role="status"
+          />
+          <p className="mt-2 text-muted">Đang tải dữ liệu...</p>
+        </div>
       ) : (
         <ProductList
           products={products}

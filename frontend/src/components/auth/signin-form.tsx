@@ -34,8 +34,6 @@ export function SigninForm({ className, ...props }: React.ComponentProps<"div">)
     <div className={`signin-container ${className}`} {...props}>
       <div className="card shadow-sm w-100 mx-auto" style={{ maxWidth: 900 }}>
         <div className="row g-0">
-          
-          {/* Form Section */}
           <div className="col-12 col-md-6 d-flex flex-column justify-content-center p-4">
             <div className="text-center mb-4">
               <a href="/" className="d-block mb-2">

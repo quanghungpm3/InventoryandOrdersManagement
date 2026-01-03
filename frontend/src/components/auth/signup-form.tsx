@@ -11,7 +11,7 @@ const signUpSchema = z.object({
   firstname: z.string().min(1, "Tên của bạn"),
   lastname: z.string().min(1, "Họ của bạn"),
   username: z.string().min(3, "Tên đăng nhập phải có ít nhất 3 ký tự")
-  .regex(/^[a-zA-Z0-9_-]+$/, "Bạn nhập sai cú pháp!"),
+    .regex(/^[a-zA-Z0-9_-]+$/, "Bạn nhập sai cú pháp!"),
   email: z.string().email("Email không hợp lệ"),
   password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
 });
@@ -45,8 +45,6 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
     <div className={`signin-container ${className}`} {...props}>
       <div className="card shadow-sm w-100 mx-auto" style={{ maxWidth: 900 }}>
         <div className="row g-0">
-
-          {/* Form */}
           <div className="col-12 col-md-6 d-flex flex-column justify-content-center p-4">
             <div className="text-center mb-4">
               <a href="/" className="d-block mb-2">
@@ -115,21 +113,16 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                 Tạo tài khoản
               </button>
             </form>
-
             <div className="mt-3 text-center small">
               Đã có tài khoản? <a href="/signin" className="link-primary">Đăng nhập</a>
             </div>
           </div>
-
-          {/* Image */}
-            <div className="col-md-6 d-none d-md-block position-relative">
-              <img src="/src/assets/placeholderSignUp.png" alt="signin" className="img-fluid h-100 w-100 object-cover" />
-            </div>
+          <div className="col-md-6 d-none d-md-block position-relative">
+            <img src="/src/assets/placeholderSignUp.png" alt="signin" className="img-fluid h-100 w-100 object-cover" />
+          </div>
 
         </div>
       </div>
-
-      {/* Terms */}
       <p className="text-center small text-muted mt-3">
         Bằng cách tiếp tục, bạn đồng ý với <a href="#" className="link-primary">Điều khoản dịch vụ</a> và <a href="#" className="link-primary">Chính sách bảo mật</a>.
       </p>

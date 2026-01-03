@@ -2,7 +2,7 @@ import type { User } from "./user";
 import type { Product } from "./product";
 import type { Order } from "./order";
 
-/* ================= AUTH ================= */
+/*  AUTH  */
 
 export interface AuthState {
   accessToken: string | null;
@@ -27,7 +27,7 @@ export interface AuthState {
   refresh: () => Promise<void>;
 }
 
-/* ================= PRODUCT ================= */
+/*  PRODUCT  */
 
 export interface ProductState {
   products: Product[];
@@ -45,7 +45,7 @@ export interface ProductState {
   clearProduct: () => void;
 }
 
-/* ================= ORDER ================= */
+/*  ORDER  */
 export interface OrderState {
   orders: Order[];
   order: Order | null;
@@ -54,7 +54,6 @@ export interface OrderState {
   fetchOrders: () => Promise<void>;
   fetchOrderById: (id: string) => Promise<void>;
 
-  // ✅ sửa type createOrder để nhận thêm nameOrder và description
   createOrder: (
     items: { productId: string; quantity: number }[],
     nameOrder: string,
