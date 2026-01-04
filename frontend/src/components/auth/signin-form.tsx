@@ -2,8 +2,10 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import "../ui/login.css";
+import logo from "@/assets/logo.svg";
+import placeholder from "@/assets/placeholder.png";
 
 // ===== Zod Schema =====
 const signInSchema = z.object({
@@ -37,14 +39,13 @@ export function SigninForm({ className, ...props }: React.ComponentProps<"div">)
           <div className="col-12 col-md-6 d-flex flex-column justify-content-center p-4">
             <div className="text-center mb-4">
               <a href="/" className="d-block mb-2">
-                <img src="/src/assets/logo.svg" alt="logo" className="img-fluid" style={{ height: 40 }} />
+                <img src={logo} alt="logo" className="img-fluid" style={{ height: 40 }} />
               </a>
               <h1 className="h4 fw-bold mb-1">Chào mừng bạn</h1>
               <p className="text-muted">Đăng nhập vào tài khoản của bạn</p>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-3">
-
               <div>
                 <label htmlFor="username" className="form-label">Tên đăng nhập</label>
                 <input
@@ -78,9 +79,8 @@ export function SigninForm({ className, ...props }: React.ComponentProps<"div">)
 
           {/* Image Section */}
           <div className="col-md-6 d-none d-md-block position-relative">
-            <img src="/src/assets/placeholder.png" alt="signin" className="img-fluid h-100 w-100 object-cover" />
+            <img src={placeholder} alt="signin" className="img-fluid h-100 w-100 object-cover" />
           </div>
-
         </div>
       </div>
 
