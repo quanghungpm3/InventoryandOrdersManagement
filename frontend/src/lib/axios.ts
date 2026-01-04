@@ -6,7 +6,7 @@ const api = axios.create({
   baseURL:
     import.meta.env.MODE === "development"
       ? "http://localhost:5001/api" // dev
-      : import.meta.env.VITE_API_URL + "/api", // prod, fallback nếu VITE_API_URL không có
+      : import.meta.env.VITE_API_URL, // prod, fallback nếu VITE_API_URL không có
   withCredentials: true,
 });
 
