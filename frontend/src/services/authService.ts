@@ -19,7 +19,7 @@ export const authService = {
 
   signIn: async (username: string, password: string) => {
     const res = await api.post(
-      "https://inventory-and-orders-management.onrender.com/auth/signin",
+      "/auth/signin",
       { username, password },
       { withCredentials: true }
     );
