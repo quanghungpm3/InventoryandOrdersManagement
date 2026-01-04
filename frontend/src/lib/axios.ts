@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useAuthStore } from "@/stores/useAuthStore";
 
+// Kết hợp MODE + VITE_API_URL
 const api = axios.create({
-  baseURL: import.meta.env.MODE === "development" 
-    ? "http://localhost:5001/api" 
-    : "/api",
-  withCredentials: true, // ✅ gửi cookie tự động
+  baseURL:
+    import.meta.env.MODE === "development"
+      ? "http://localhost:5001/api" // dev
+      : import.meta.env.VITE_API_URL || "/api", // prod, fallback nếu VITE_API_URL không có
+  withCredentials: true,
 });
 
 api.interceptors.request.use(config => {
@@ -25,7 +27,8 @@ api.interceptors.response.use(
       originalRequest?.url?.includes("/auth/signin") ||
       originalRequest?.url?.includes("/auth/signup") ||
       originalRequest?.url?.includes("/auth/refresh")
-    ) return Promise.reject(error);
+    )
+      return Promise.reject(error);
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
